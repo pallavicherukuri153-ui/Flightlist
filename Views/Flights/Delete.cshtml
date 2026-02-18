@@ -1,0 +1,20 @@
+@model FlightsList.Models.Flight
+@{
+    ViewData["Title"] = "Delete Flight";
+}
+
+<h2>Delete Flight</h2>
+
+<div class="alert alert-warning mt-3">
+    Are you sure you want to delete this flight?
+</div>
+
+<div class="mb-3">
+    <strong>@Model.FlightNumber</strong> — @Model.From → @Model.To on @Model.Date.ToString("M/d/yyyy")
+</div>
+
+<form method="post" asp-controller="Flights" asp-action="DeleteConfirmed" asp-route-id="@Model.FlightId">
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-controller="Flights" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+</form>
